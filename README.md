@@ -58,6 +58,9 @@ Endpoint = GET truckin/trucks?startLat=val,startLong=val,truncate=false)
 - If truncating, limit to entries within the radius threshold, else return all for better pan\zoom support? 
   - TBD: not sure how native mapping handles data load and needs further evaluation on performance of map vs api roundtrip.  
 
+## Setup and TODO
+- The project included here is an untested web service to fulfil the data request from the mobile app. My local environment is sorely lacking for being able to build out the solution in a more complete fashion but hope this provides some clarity of intention. 
+
 ## Future and Other Considerations
 1. If native mapping features are not "free" or reloading pins and list during pan & zoom is clunky, consider options to increase initial radius in 1/2 mile increments.  If we do that should pan\zoom be disabled? 
 2. Add logic around "dayshours" field, e.g. omit closed locations, filter by open locations, icon for closing soon. 
