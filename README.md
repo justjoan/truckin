@@ -1,6 +1,6 @@
 # Truckin
 ## Overview
-In addition to being a shout out to the iconic San Francisco band The Grateful Dead, *Truckin* is a mobile app set out to feed the busy people of San Franscico with ease. An interactive map shows nearby food trucks with basic info for each, while offering lots of potential for future extension.  
+In addition to being a shout out to the iconic San Francisco band The Grateful Dead, *Truckin* is a mobile app set out to feed the busy people of San Franscico with ease. The app shows nearby food trucks through both an interactive map view and a list view, while offering lots of potential for future extension.  
 
 ## Considerations and Assumptions
 - The only hard requirement is to provide the user with a minumum of 5 food trucks near their current location. 
