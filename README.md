@@ -58,8 +58,15 @@ Endpoint = GET truckin/trucks?startLat=val,startLong=val,truncate=false)
 - If truncating, limit to entries within the radius threshold, else return all for better pan\zoom support? 
   - TBD: not sure how native mapping handles data load and needs further evaluation on performance of map vs api roundtrip.  
 
-## Setup and TODO
-- The project included here is an untested web service to fulfil the data request from the mobile app. My local environment is sorely lacking for being able to build out the solution in a more complete fashion but hope this provides some clarity of intention. 
+## Project knowns and unknowns
+- The project included here is an untested web service to fulfil the data request from the mobile app. My local environment is sorely lacking for being able to build out the solution in a more complete fashion. At this point there are still lots of questions and reasearch I would do, such as:
+- Experiment with the mapping and geospacial features in the Power Platform to understand options for interacting with a data source, performance considerations, display formatting, info cards
+- I doubt we'd want each phone calling out to the SFO website for data so caching of the original source data is a must but in current approach I'm not clear how connectors are hosted. I asssume instances are short lived so a memory cache won't work. What are the caching options in the platform?  Also need logic for expiring\refreshing the cache so would want to understand the rate of change or a method of change detection. Where data can be cached may affect decisions about how the data is sourced to the app, and visa versa.
+- Would want to validate the assumptions made in the data around Status=APPROVED being the correct way to validate active trucks
+- Is there any kind of data coming out of usage that would be helpful to the user? to the city? to the developent team?
+- What's the right place to put the data endpoint url? Currently hardcoded but don't want to expose it for tampering either. Possibly depends on the caching solution - if the service remains it would read from the cache and another component would read from the SFO data source and update the cache. 
+- Plus more, I'm sure...
+
 
 ## Future and Other Considerations
 1. If native mapping features are not "free" or reloading pins and list during pan & zoom is clunky, consider options to increase initial radius in 1/2 mile increments.  If we do that should pan\zoom be disabled? 
