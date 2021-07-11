@@ -67,7 +67,6 @@ Endpoint = GET truckin/trucks?startLat=val,startLong=val,truncate=false)
 - What's the right place to put the data endpoint url? Currently hardcoded but don't want to expose it for tampering either. Possibly depends on the caching solution - if the service remains it would read from the cache and another component would read from the SFO data source and update the cache. 
 - Plus more, I'm sure...
 
-
 ## Future and Other Considerations
 1. If native mapping features are not "free" or reloading pins and list during pan & zoom is clunky, consider options to increase initial radius in 1/2 mile increments.  If we do that should pan\zoom be disabled? 
 2. Add logic around "dayshours" field, e.g. omit closed locations, filter by open locations, icon for closing soon. 
@@ -82,5 +81,15 @@ Endpoint = GET truckin/trucks?startLat=val,startLong=val,truncate=false)
 11. Voice commands for filtering by "FoodItems" content (e.g. find me a burger nearby)
 12. Audio options for visually impaired
 
+## Post-Submission Revision\Addendum
+As is typical, this problem continued to roll around in my mind after I had submitted it, and I came to favor a different approach.  Since I think the intention of hte exercise is more about understanding how one thinks I'm amending rather than modifying my original submission. My thoughts:
+- Approach: 
+  - I think the user would actually want a small amount of choice at a glance within a convenient area, and the ability to easily confirm location on a map. While pedestrian inhibitors are a factor, I think that is less likely when in the middle of an urban area (highways are built around not through, and while rivers through are common they are often wide enough to not sort those entries as being closest to the user.
+  - Therefore, I think the UX could be simpfied into a single view that conveys info about the truck as well as enough about distance to be helpful.  
+- UX: Provide a single list view with differentiation by distance, which can be list sections, or color coded to increments every quarter mile, capped at 1 mile max. The first section would be expanded to details, and the other sections would be collapsed but indicate the number of results within the section.  Each section, if included, would still include all trucks within that perimeter. But a section may not need to be included if we reach already reach a limit (arbitrary: 10?).  Each item in the list would have the details at a glance (name, desc, hours, address) and the ability to view on a map. 
+- Backend: 
+  - Still provide a service but it would read from a table generically defined for geolocation details (name, desc, type, lat, long, hours, icon, ...)
+  - Provide a custom connector to the SFO data source that is triggered on a schedule to pull data and save to the data table.  This solves the caching issue and also opens it up to allow for additional connectors, (e.g. the user could use the same app for other cities, or to overlay other data sets like special events permits, or construction zones, or vaccine sites, etc).    
 
+ 
 
